@@ -1,103 +1,154 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Weather Info</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=360px, initial-scale=1">
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-        <div class="card">
-            <div class="search">
-                <input type="text" placeholder="Enter City Name" spellcheck="false">
-                <button class="responsive"><img src="gitignore/search.png" alt="search icon"></button>
-            </div>
-            <div class="error">
-                <p>Invalid city name</p>
-            </div>
-            <div class="weather">
-                <img src="gitignore/clouds.png" class="weather-icon">
-                <h1 class="temp"></h1>
-                <h2 class="city"></h2>
-                <div class="details">
-                    <div class="col">
-                        <img src="gitignore/humidity.png">
-                        <div>
-                            <p class="humidity"></p>
-                            <p>Humidity</p>
-                        </div>
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter City Name" spellcheck="false">
+            <button class="responsive"><img src="gitignore/search.png" alt="search icon"></button>
+        </div>
+        <div class="error">
+            <p>Invalid city name</p>
+        </div>
+        <div class="weather">
+            <img src="gitignore/clouds.png" class="weather-icon">
+            <h1 class="temp"></h1>
+            <h2 class="city"></h2>
+            <div class="details">
+                <div class="col">
+                    <img src="gitignore/humidity.png">
+                    <div>
+                        <p class="humidity"></p>
+                        <p>Humidity</p>
                     </div>
-                    <div class="col">
-                        <img src="gitignore/wind.png">
-                        <div>
-                            <p class="wind"></p>
-                            <p>Wind Speed</p>
-                        </div>
+                </div>
+                <div class="col">
+                    <img src="gitignore/wind.png">
+                    <div>
+                        <p class="wind"></p>
+                        <p>Wind Speed</p>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            
-            const apiKey ="e594374355ffc0d6fae2338aef91930b";
-            const apiUrl ="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    </div>
+    <script>
 
-            const searchBox = document.querySelector(".search input");
-            const searchBtn = document.querySelector(".search button");
-            const weatherIcon =document.querySelector(".weather-icon");
+        const apiKey = "e594374355ffc0d6fae2338aef91930b";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-            async function checkWeather(city){
-                const response =await fetch(apiUrl + city + `&appid=${apiKey}`);// fetch data using apikey and apiUrl
-                if(response.status == 404){
-                    document.querySelector(".error").style.display = "block";
-                    document.querySelector(".weather").style.display = "none";
-                }
-                else{
-                    var data  = await response.json();// all information in the form of object store in the data its work as a object.
-                // for checking whether object fetch or not.
-                // console.log(data);
-                
-                document.querySelector(".city").innerHTML= data.name;
-                document.querySelector(".temp").innerHTML= Math.round(data.main.temp) + "&deg;C";
-                document.querySelector(".humidity").innerHTML= data.main.humidity + "%";
-                document.querySelector(".wind").innerHTML= data.wind.speed+ " km/h";
-                
-                // by using if else statement we manipulate the pic of situation like clouds,rain,mist etc
-                if(data.weather[0].main =="Clouds"){
-                    // document.getElementById("icon").src="gitignore/clouds";
-                    weatherIcon.src="clouds.png";
-                
-                }
-                else if(data.weather[0].main =="Clear"){
-                    weatherIcon.src="clear.png";
-                }
-                else if(data.weather[0].main =="Rain"){
-                    weatherIcon.src="rain.png";
-                }
-                else if(data.weather[0].main =="Drizzle"){
-                    weatherIcon.src="drizzle.png";
-                }
-                else if(data.weather[0].main =="Mist"){
-                    weatherIcon.src="mist.png";
-                }
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weather-icon");
 
-                document.querySelector(".weather").style.display = "block";
-                document.querySelector(".error").style.display = "none";
+        async function checkWeather(city) {
+            if (city == "Aurangabad"|| city == "aurangabad") {
+                alert(`Name changed Please enter ("chhtrapati sambhaji nagar")`);
+            }
+            else {
+                if (city == "chhatrapati sambhaji nagar") {
+                    city = "aurangabad";
+
+                    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);// fetch data using apikey and apiUrl
+                    if (response.status == 404) {
+                        document.querySelector(".error").style.display = "block";
+                        document.querySelector(".weather").style.display = "none";
+                    }
+                    else {
+                        var data = await response.json();// all information in the form of object store in the data its work as a object.
+                        // for checking whether object fetch or not.
+                        // console.log(data);
+
+                        document.querySelector(".city").innerHTML = "chhatrapati sambhaji nagar";
+                        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "&deg;C";
+                        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+                        // by using if else statement we manipulate the pic of situation like clouds,rain,mist etc
+                        if (data.weather[0].main == "Clouds") {
+                            // document.getElementById("icon").src="gitignore/clouds";
+                            weatherIcon.src = "clouds.png";
+
+                        }
+                        else if (data.weather[0].main == "Clear") {
+                            weatherIcon.src = "clear.png";
+                        }
+                        else if (data.weather[0].main == "Rain") {
+                            weatherIcon.src = "rain.png";
+                        }
+                        else if (data.weather[0].main == "Drizzle") {
+                            weatherIcon.src = "drizzle.png";
+                        }
+                        else if (data.weather[0].main == "Mist") {
+                            weatherIcon.src = "mist.png";
+                        }
+
+                        document.querySelector(".weather").style.display = "block";
+                        document.querySelector(".error").style.display = "none";
+
+                    }
 
                 }
-                
+                else {
+                    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);// fetch data using apikey and apiUrl
+                    if (response.status == 404) {
+                        document.querySelector(".error").style.display = "block";
+                        document.querySelector(".weather").style.display = "none";
+                    }
+                    else {
+                        var data = await response.json();// all information in the form of object store in the data its work as a object.
+                        // for checking whether object fetch or not.
+                        // console.log(data);
 
+                        document.querySelector(".city").innerHTML = data.name;
+                        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "&deg;C";
+                        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
 
-                
+                        // by using if else statement we manipulate the pic of situation like clouds,rain,mist etc
+                        if (data.weather[0].main == "Clouds") {
+                            // document.getElementById("icon").src="gitignore/clouds";
+                            weatherIcon.src = "clouds.png";
+
+                        }
+                        else if (data.weather[0].main == "Clear") {
+                            weatherIcon.src = "clear.png";
+                        }
+                        else if (data.weather[0].main == "Rain") {
+                            weatherIcon.src = "rain.png";
+                        }
+                        else if (data.weather[0].main == "Drizzle") {
+                            weatherIcon.src = "drizzle.png";
+                        }
+                        else if (data.weather[0].main == "Mist") {
+                            weatherIcon.src = "mist.png";
+                        }
+
+                        document.querySelector(".weather").style.display = "block";
+                        document.querySelector(".error").style.display = "none";
+
+                    }
+                }
 
             }
-            searchBtn.addEventListener("click",()=>{
-                //when user clicks on that button then below method or function calls.
-                checkWeather(searchBox.value);
-               // document.querySelector(".weather").style.display= "block";
-                // after clicking on search button we will get all data temp,name,humidity etc.
-            })
+
+        }
+
+        searchBtn.addEventListener("click", () => {
+            //when user clicks on that button then below method or function calls.
+            checkWeather(searchBox.value);
+            // document.querySelector(".weather").style.display= "block";
+            // after clicking on search button we will get all data temp,name,humidity etc.
+        })
             // checkWeather('New York');
-        </script>
-  </body>
+    </script>
+</body>
+
 </html>
