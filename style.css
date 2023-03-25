@@ -34,7 +34,7 @@ body{
     border-radius:30px;
     flex:1;
     margin-right:16px;
-    font-size:20px;
+    font-size:18px;
     text-align:left;
     
 }
@@ -100,6 +100,15 @@ body{
     .search input{
         width:30%;
         font-weight:4px;
-        font-size:3px;
+    
     }
+    .card{
+        width:95%;
+    }
+    .humidity ,.wind{
+        font-size:28px;
+        margin-top:-6px;
+    }
+   
 }
+
