@@ -53,7 +53,7 @@
                 alert(`Name changed Please enter ("chhtrapati sambhaji nagar")`);
             }
             else {
-                if (city == "chhatrapati sambhaji nagar") {
+                if (city == "chhatrapati sambhaji nagar" || city == "Chhatrapati Sambhaji Nagar") {
                     city = "aurangabad";
 
                     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);// fetch data using apikey and apiUrl
