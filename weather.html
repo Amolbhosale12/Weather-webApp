@@ -10,10 +10,13 @@
 
 <body>
     <div class="card">
-        <div class="search">
-            <input type="text" placeholder="Enter City Name" spellcheck="false">
-            <button class="responsive"><img src="gitignore/search.png" alt="search icon"></button>
-        </div>
+        <form action="" onsubmit="searchWeather(event)">
+            <div class="search">
+                <input type="text" placeholder="Enter City Name" spellcheck="false">
+                <button class="responsive" type="submit">Search</button>
+            </div>
+        </form>
+
         <div class="error">
             <p>Invalid city name</p>
         </div>
@@ -49,7 +52,7 @@
         const weatherIcon = document.querySelector(".weather-icon");
 
         async function checkWeather(city) {
-            if (city == "Aurangabad"|| city == "aurangabad") {
+            if (city == "Aurangabad" || city == "aurangabad") {
                 alert(`Name changed Please enter ("chhtrapati sambhaji nagar")`);
             }
             else {
@@ -140,14 +143,19 @@
             }
 
         }
+        
+        // searchBtn.addEventListener("click", () => {
+        //     when user clicks on that button then below method or function calls.
+        //     checkWeather(searchBox.value);
+        //     document.querySelector(".weather").style.display= "block";
+        //     after clicking on search button we will get all data temp,name,humidity etc.
+        // })
 
-        searchBtn.addEventListener("click", () => {
-            //when user clicks on that button then below method or function calls.
+        function searchWeather(event){
+            event.preventDefault();
             checkWeather(searchBox.value);
-            // document.querySelector(".weather").style.display= "block";
-            // after clicking on search button we will get all data temp,name,humidity etc.
-        })
-            //checkWeather('New York');
+            console.log('its searching');
+        }
     </script>
 </body>
 
